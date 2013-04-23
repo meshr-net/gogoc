@@ -34,11 +34,11 @@ Copyright (c) 2001-2007 gogo6 Inc. All rights reserved.
 #define IFNAMSIZ 16     // from net/if.h
 
 
-char *FileName  = "gogoc.conf";
+char *FileName  = "/etc/gogoc/gogoc.conf";
 char *ScriptInterpretor = "/bin/sh";
 char *ScriptExtension = "sh";
 char *ScriptDir = NULL;
-char *TspHomeDir = "/usr/local/etc/gogoc";
+char *TspHomeDir = "/usr/share/gogoc";
 char DirSeparator = '/';
 
 int indSigHUP = 0;    // Set to 1 when HUP signal is trapped.

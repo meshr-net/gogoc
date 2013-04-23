@@ -9,6 +9,8 @@
 # Note: IPV6 support and tun Support must be enabled before calling this script.
 # 
 
+# Changed here for Debian systems - used for radvd config file only
+TSP_HOME_DIR=/var/run/gogoc
 
 LANGUAGE=C
 

@@ -33,11 +33,11 @@ This source code copyright (c) gogo6 Inc. 2002-2007.
 
 /* these globals are defined by US used by alot of things in  */
 
-char *FileName  = "gogoc.conf";
+char *FileName  = "/etc/gogoc/gogoc.conf";
 char *ScriptInterpretor = "/bin/sh";
 char *ScriptExtension = "sh";
 char *ScriptDir = NULL;
-char *TspHomeDir = "/usr/local/etc/gogoc";
+char *TspHomeDir = "/usr/share/gogoc";
 char DirSeparator = '/';
 
 int indSigHUP = 0;    // Set to 1 when HUP signal is trapped.

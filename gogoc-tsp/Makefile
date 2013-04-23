@@ -47,8 +47,10 @@ SUPPORTED_PLATFORMS=linux netbsd freebsd openbsd darwin sunos gogocpe
 
 INSTALL_DIR   :=$(installdir)
 INSTALL_BIN   :=$(INSTALL_DIR)/bin
-INSTALL_MAN   :=$(INSTALL_DIR)/man
-INSTALL_TEMPL :=$(INSTALL_DIR)/template
+INSTALL_SHARE :=$(INSTALL_DIR)/share
+INSTALL_MAN   :=$(INSTALL_DIR)/share/man
+INSTALL_TEMPL :=$(INSTALL_DIR)/share/gogoc/template
+INSTALL_CFG   :=$(INSTALL_DIR)/../etc/gogoc
 
 
 SUBDIRS=$(PWD)/src/lib \
@@ -168,15 +170,16 @@ install: check-gogoc-install all
 	@mkdir -p $(INSTALL_BIN)
 	@mkdir -p $(INSTALL_MAN)
 	@mkdir -p $(INSTALL_TEMPL)
+	@mkdir -p $(INSTALL_CFG)
 
 	@for dir in ${SUBDIRS}; do \
 	    $(MAKE) -C $$dir install || exit 1; \
 	done
 
 	@cp $(TARGET) $(INSTALL_BIN)
-	@cp $(BIN_DIR)/gogoc.conf.sample $(INSTALL_BIN)
-	@[ -f $(INSTALL_BIN)/gogoc.conf ] || { \
-	    cp $(INSTALL_BIN)/gogoc.conf.sample $(INSTALL_BIN)/gogoc.conf; \
+	@cp $(BIN_DIR)/gogoc.conf.sample $(INSTALL_CFG)
+	@[ -f $(INSTALL_CFG)/gogoc.conf ] || { \
+	    cp $(INSTALL_CFG)/gogoc.conf.sample $(INSTALL_CFG)/gogoc.conf; \
 	}
 
 
