@@ -13,11 +13,11 @@
 -include platform.mak
 
 ifdef DEBUG
-CFLAGS=-g -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT -DDEBUG
-LDFLAGS=-g $(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lstdc++ -fexceptions
+CFLAGS += -g -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT -DDEBUG
+LDFLAGS += -g $(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lstdc++ -fexceptions
 else
-CFLAGS=-O2 -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT
-LDFLAGS=$(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lstdc++ -fexceptions
+CFLAGS += -O2 -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT
+LDFLAGS += $(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lstdc++ -fexceptions
 endif
 CC=gcc
 

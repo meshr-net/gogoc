@@ -13,11 +13,11 @@
 -include platform.mak
 
 ifdef DEBUG
-CFLAGS=-g -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT -DDEBUG
-LDFLAGS=-g $(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lpthread -lstdc++
+CFLAGS += -g -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT -DDEBUG
+LDFLAGS += -g $(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lpthread -lstdc++
 else
-CFLAGS=-O2 -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT
-LDFLAGS=$(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lpthread -lstdc++
+CFLAGS += -O2 -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT
+LDFLAGS += $(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lpthread -lstdc++
 endif
 CC=gcc
 
@@ -36,7 +36,7 @@ $(OBJS_DIR)/tsp_tun.o:tsp_tun.c
 	$(CC) $(CFLAGS) -c tsp_tun.c -o $(OBJS_DIR)/tsp_tun.o
 
 $(TARGET): $(OBJS)
-	$(CC) -o $(TARGET) $(wildcard $(OBJS_DIR)/*.o) $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(wildcard $(OBJS_DIR)/*.o) $(LDFLAGS)
 
 clean:
 	rm -f $(OBJS) $(TARGET)

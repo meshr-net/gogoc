@@ -13,11 +13,11 @@
 -include platform.mak
 
 ifdef DEBUG
-CFLAGS=-g -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT -DDEBUG
-LDFLAGS=-g $(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lpthread -lstdc++ -lm
+CFLAGS += -g -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT -DDEBUG
+LDFLAGSi += -g $(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lpthread -lstdc++ -lm
 else
-CFLAGS=-O2 -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT
-LDFLAGS=$(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lpthread -lstdc++ -lm
+CFLAGS += -O2 -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT
+LDFLAGS += $(LD_LIB_PATHS) $(LD_LIBRARIES) -lcrypto -lpthread -lstdc++ -lm
 endif
 CC=gcc
 

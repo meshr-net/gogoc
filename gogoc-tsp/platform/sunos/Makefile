@@ -13,11 +13,11 @@
 -include platform.mak
 
 ifdef DEBUG
-CFLAGS=-g -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT -DDEBUG
-LDFLAGS=-g $(LD_LIB_PATHS) $(LD_LIBRARIES) -lsocket -lnsl -lcrypto -lpthread -lstdc++ -L/usr/sfw/lib -L/usr/local/ssl/lib
+CFLAGS += -g -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT -DDEBUG
+LDFLAGS += -g $(LD_LIB_PATHS) $(LD_LIBRARIES) -lsocket -lnsl -lcrypto -lpthread -lstdc++ -L/usr/sfw/lib -L/usr/local/ssl/lib
 else
-CFLAGS=-O2 -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT
-LDFLAGS=$(LD_LIB_PATHS) $(LD_LIBRARIES) -lsocket -lnsl -lcrypto -lpthread -lstdc++ -L/usr/sfw/lib -L/usr/local/ssl/lib
+CFLAGS += -O2 -Wall $(CC_INC_PATHS) $(PLATFORM_CFLAGS) -D_REENTRANT
+LDFLAGS += $(LD_LIB_PATHS) $(LD_LIBRARIES) -lsocket -lnsl -lcrypto -lpthread -lstdc++ -L/usr/sfw/lib -L/usr/local/ssl/lib
 endif
 CC=gcc
 
