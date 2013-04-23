@@ -266,6 +266,9 @@ interface $TSP_HOME_INTERFACE
 };
 EOF
 
+   # Change the SELinux context of the file so the radvd daemon can read it
+   /sbin/restorecon $rtadvdconfigfile
+
    # Start the radvd daemon.
    Display 1 "Starting radvd: $rtadvd -u radvd -C $rtadvdconfigfile"
    Exec $rtadvd -u radvd -p $rtadvd_pid -C $rtadvdconfigfile

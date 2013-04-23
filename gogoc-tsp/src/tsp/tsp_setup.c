@@ -37,14 +37,17 @@ Copyright (c) 2001-2007 gogo6 Inc. All rights reserved.
 sint32_t execScript( const char *cmd )
 {
   char buf[1024];
-  FILE* f_log;
+//  FILE* f_log;
   sint32_t retVal;
 
   // Run the command.
   memset( buf, 0, sizeof(buf) );
-  pal_snprintf( buf, sizeof(buf), "%s > %s", cmd, SCRIPT_TMP_FILE );
+  pal_snprintf( buf, sizeof(buf), "%s", cmd );
   retVal = pal_system( buf );
 
+/* Don't log the result of the command because this way
+ * causes a SELinux alarm in Fedora
+ 
   // Open resulting output file.
   f_log = fopen( SCRIPT_TMP_FILE, "r" );
   if( f_log == NULL )
@@ -66,6 +69,7 @@ sint32_t execScript( const char *cmd )
 
   // Remove command output.
   pal_unlink( SCRIPT_TMP_FILE );
+*/
 
   return retVal;
 }
