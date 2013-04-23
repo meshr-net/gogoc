@@ -512,7 +512,7 @@ bool Validate_ClientV4( const string& sClientV4 )
   if( sClientV4 != STR_AUTO )
   {
     struct in_addr address;
-    unsigned long net;
+    in_addr_t net;
 
     net = inet_addr( sClientV4.c_str() );
     memcpy(&address, &net, sizeof(net));
