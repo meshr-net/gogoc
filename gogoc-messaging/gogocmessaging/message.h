@@ -22,6 +22,7 @@
 
 
 #include <pal.h>
+#include <stddef.h>
 
 
 // Undefine Windows Win32 API PostMessage
