@@ -27,9 +27,14 @@ KillProcess()
    fi
    PID=`ps axww | grep $1 | grep -v grep | awk '{ print $1;}'`
    echo $PID
-   if [ ! -z $PID ]; then
-      kill $PID
-   fi
+
+   # This check doesn't work in Fedora, I don't know why
+   # if [ ! -z $PID ]; then
+      for i in $PID
+         do
+            kill $i
+      done
+   # fi
 }
 
 Display()
