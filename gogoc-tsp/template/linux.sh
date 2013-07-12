@@ -159,7 +159,7 @@ if [ X"${TSP_OPERATION}" = X"TSP_TUNNEL_TEARDOWN" ]; then
 
       Delete interface IPv6 configuration.
       PREF=`echo $TSP_CLIENT_ADDRESS_IPV6 | sed "s/:0*/:/g" |cut -d : -f1-2`
-      OLDADDR=`$ifconfig $TSP_TUNNEL_INTERFACE | grep "inet6.* $PREF" | sed -e "s/^.*inet6 addr: //" -e "s/ Scope.*\$//"`
+      OLDADDR=`$ifconfig $TSP_TUNNEL_INTERFACE | grep "inet6.* $PREF" | sed -e "s/^.*inet6 //" -e "s/  prefixlen /\//" -e "s/  scope.*\$//"`
       if [ ! -z $OLDADDR ]; then
         ExecNoCheck $ifconfig $TSP_TUNNEL_INTERFACE inet6 del $OLDADDR
       fi
@@ -198,7 +198,7 @@ if [ X"${TSP_HOST_TYPE}" = X"host" ] || [ X"${TSP_HOST_TYPE}" = X"router" ]; the
 
    # Clean-up old interface IPv6 configuration.
    PREF=`echo $TSP_CLIENT_ADDRESS_IPV6 | sed "s/:0*/:/g" |cut -d : -f1-2`
-   OLDADDR=`$ifconfig $TSP_TUNNEL_INTERFACE | grep "inet6.* $PREF" | sed -e "s/^.*inet6 addr: //" -e "s/ Scope.*\$//"`
+   OLDADDR=`$ifconfig $TSP_TUNNEL_INTERFACE | grep "inet6.* $PREF" | sed -e "s/^.*inet6 //" -e "s/  prefixlen /\//" -e "s/  scope.*\$//"`
    if [ ! -z $OLDADDR ]; then
       Display 1 "Removing old IPv6 address $OLDADDR"
       Exec $ifconfig $TSP_TUNNEL_INTERFACE inet6 del $OLDADDR
@@ -241,7 +241,7 @@ if [ X"${TSP_HOST_TYPE}" = X"router" ]; then
    fi
 
    # Add prefix::1 on advertising interface. Clean up before.
-   OLDADDR=`$ifconfig $TSP_HOME_INTERFACE | grep "inet6.* $PREF" | sed -e "s/^.*inet6 addr: //" -e "s/ Scope.*\$//"`
+   OLDADDR=`$ifconfig $TSP_HOME_INTERFACE | grep "inet6.* $PREF" | sed -e "s/^.*inet6 //" -e "s/  prefixlen /\//" -e "s/  scope.*\$//"`
    if [ ! -z $OLDADDR ]; then
       Display 1 "Removing old IPv6 address $OLDADDR"
       Exec $ifconfig $TSP_HOME_INTERFACE inet6 del $OLDADDR
