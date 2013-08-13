@@ -27,14 +27,9 @@ KillProcess()
    fi
    PID=`ps axww | grep $1 | grep -v grep | awk '{ print $1;}'`
    echo $PID
-
-   # This check doesn't work in Fedora, I don't know why
-   # if [ ! -z $PID ]; then
-      for i in $PID
-         do
-            kill $i
-      done
-   # fi
+   if [ ! -z $PID ]; then
+      kill $PID
+   fi
 }
 
 Display()
@@ -270,9 +265,6 @@ interface $TSP_HOME_INTERFACE
   };
 };
 EOF
-
-   # Change the SELinux context of the file so the radvd daemon can read it
-   /sbin/restorecon $rtadvdconfigfile
 
    # Start the radvd daemon.
    Display 1 "Starting radvd: $rtadvd -u radvd -C $rtadvdconfigfile"
