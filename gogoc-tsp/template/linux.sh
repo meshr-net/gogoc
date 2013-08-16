@@ -258,7 +258,7 @@ if [ X"${TSP_HOST_TYPE}" = X"router" ]; then
 
 
    # Stop radvd daemon if it was running. Twice.
-   /usr/bin/systemctl is-active --quiet radvd.service && /usr/bin/systemctl stop --quiet radvd.service
+   /usr/bin/systemctl is-active --quiet radvd.service && /usr/bin/systemctl stop radvd.service
    if [ -f $rtadvdconfigfile ]; then
      KillProcessPIDFile $rtadvd_pid
    fi
