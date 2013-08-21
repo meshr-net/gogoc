@@ -38,7 +38,7 @@ platform-obj: ${OBJS}
 
 
 ${OBJS_DIR}/pal_version.o: ${SRC_DIR}/pal_version.c ${INC_DIR}/pal_version.h
-	$(CC) ${CFLAGS} -o $@ ${SRC_DIR}/pal_version.c
+	$(CC) $(CFLAGS) -o $@ ${SRC_DIR}/pal_version.c
 
 
 #
