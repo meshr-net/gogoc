@@ -15,6 +15,6 @@ This source code copyright (c) gogo6 Inc. 2002-2007.
 
 #include "pal.h"
 
-#define SCRIPT_TMP_FILE                   "/tmp/gogoc-tmp.log"
+#define SCRIPT_TMP_FILE                   "/var/run/gogoc/gogoc-tmp.log"
 
 #endif
