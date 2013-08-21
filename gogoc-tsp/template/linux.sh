@@ -32,6 +32,18 @@ KillProcess()
    fi
 }
 
+KillProcessPIDFile()
+{
+   if [ ! -z $TSP_VERBOSE ]; then
+      if [ $TSP_VERBOSE -ge 2 ]; then
+         echo killing $*
+      fi
+   fi
+   if [ -r "$1" ]; then
+      kill `cat "$1"`
+   fi
+}
+
 Display()
 {
    if [ -z $TSP_VERBOSE ]; then
@@ -125,7 +137,7 @@ if [ X"${TSP_OPERATION}" = X"TSP_TUNNEL_TEARDOWN" ]; then
   if [ X"${TSP_HOST_TYPE}" = X"router" ]; then
 
     # Kill router advertisement daemon
-    KillProcess $rtadvdconfigfile
+    KillProcessPIDFile $rtadvd_pid
 
     # Remove prefix routing on TSP_HOME_INTERFACE
     ExecNoCheck $route -A inet6 del $TSP_PREFIX::/$TSP_PREFIXLEN
@@ -245,10 +257,9 @@ if [ X"${TSP_HOST_TYPE}" = X"router" ]; then
    Exec $ifconfig $TSP_HOME_INTERFACE add $TSP_PREFIX::1/64
 
 
-   # Stop radvd daemon if it was running. Twice.
-   /etc/init.d/radvd stop
+   # Stop radvd daemon if it was running.
    if [ -f $rtadvdconfigfile ]; then
-     KillProcess $rtadvdconfigfile
+     KillProcessPIDFile $rtadvd_pid
    fi
 
    # Create new radvd configuration file.
