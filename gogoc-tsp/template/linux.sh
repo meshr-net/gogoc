@@ -257,8 +257,7 @@ if [ X"${TSP_HOST_TYPE}" = X"router" ]; then
    Exec $ifconfig $TSP_HOME_INTERFACE add $TSP_PREFIX::1/64
 
 
-   # Stop radvd daemon if it was running. Twice.
-   /usr/bin/systemctl is-active --quiet radvd.service && /usr/bin/systemctl stop radvd.service
+   # Stop radvd daemon if it was running.
    if [ -f $rtadvdconfigfile ]; then
      KillProcessPIDFile $rtadvd_pid
    fi
